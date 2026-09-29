@@ -1,14 +1,23 @@
 package com.example.task02;
 
-import java.io.IOException;
+import java.io.*;
 
 public class Task02Main {
     public static void main(String[] args) throws IOException {
-        // чтобы протестировать свое решение, вам нужно:
-        // - направить файл src/test/resources/input.test в стандартный ввод программы (в настройках запуска программы в IDE или в консоли)
-        // - направить стандартный вывод программы в файл output.test
-        // - запустить программу
-        // - и сравнить получившийся файл output.test с src/test/resources/expected.test
-        // то же самое делает тест main_testFiles
+        InputStream in = new BufferedInputStream(System.in);
+        OutputStream out = new BufferedOutputStream(System.out);
+
+        int prev = in.read();
+        while (prev != -1) {
+            int next = in.read();
+            if (prev == 13 && next == 10) {
+                out.write(10);
+                prev = in.read();
+            } else {
+                out.write(prev);
+                prev = next;
+            }
+        }
+        out.flush();
     }
 }
