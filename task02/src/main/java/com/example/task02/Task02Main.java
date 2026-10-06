@@ -10,5 +10,25 @@ public class Task02Main {
         // - запустить программу
         // - и сравнить получившийся файл output.test с src/test/resources/expected.test
         // то же самое делает тест main_testFiles
+        int before = -1;
+        int now;
+
+        while((now = System.in.read()) != -1) {
+
+            if (before == 13 && now != 10){
+                System.out.write(before);
+            }
+
+            if (now != 13){
+                System.out.write(now);
+            }
+            before = now;
+        }
+
+        if (before == 13){
+            System.out.write(13);
+        }
+
+        System.out.flush();
     }
 }
