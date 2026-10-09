@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class Task04MainTest {
+public class Task04MainTest {
 
     private static Stream<Arguments> sums() {
         return Stream.of(

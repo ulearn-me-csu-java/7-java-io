@@ -15,7 +15,15 @@ public class Task03Main {
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        // your implementation here
-        return "";
+        if (inputStream == null) {
+            throw new IllegalArgumentException("inputStream must not be null");
+        }
+        if (charset == null) {
+            throw new IllegalArgumentException("charset must not be null");
+        }
+
+        byte[] bytes = inputStream.readAllBytes();
+        return new String(bytes, charset);
     }
+
 }
