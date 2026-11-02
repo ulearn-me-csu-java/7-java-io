@@ -1,21 +1,27 @@
 package com.example.task03;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 
 public class Task03Main {
     public static void main(String[] args) throws IOException {
-        //здесь вы можете вручную протестировать ваше решение, вызывая реализуемый метод и смотря результат
-        // например вот так:
-
-        /*
-        System.out.println(readAsString(new FileInputStream("task03/src/test/resources/input.test"), Charset.forName("KOI8-R")));
-        */
+        InputStream is = new java.io.ByteArrayInputStream(new byte[]{48, 49, 50, 51});
+        System.out.println(readAsString(is, Charset.forName("ASCII"))); // 0123
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        // your implementation here
-        return "";
+        if (inputStream == null || charset == null) {
+            throw new IllegalArgumentException("inputStream and charset must not be null");
+        }
+
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+        byte[] chunk = new byte[4096];
+        int read;
+        while ((read = inputStream.read(chunk)) != -1) {
+            buffer.write(chunk, 0, read);
+        }
+        return new String(buffer.toByteArray(), charset);
     }
 }
