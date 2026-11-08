@@ -1,7 +1,6 @@
 package com.example.task03;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.charset.Charset;
 
 public class Task03Main {
@@ -9,13 +8,21 @@ public class Task03Main {
         //здесь вы можете вручную протестировать ваше решение, вызывая реализуемый метод и смотря результат
         // например вот так:
 
-        /*
         System.out.println(readAsString(new FileInputStream("task03/src/test/resources/input.test"), Charset.forName("KOI8-R")));
-        */
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        // your implementation here
-        return "";
+        if (inputStream == null || charset == null) throw new IllegalArgumentException();
+
+        StringBuilder sb = new StringBuilder();
+        try (Reader reader = new InputStreamReader(
+                inputStream, charset)) {
+            int c;
+            while ((c = reader.read()) != -1) {
+                char ch = (char) c;
+                sb.append(ch);
+            }
+        }
+        return sb.toString();
     }
 }
