@@ -1,6 +1,8 @@
 package com.example.task04;
 
-import java.io.IOException;
+import java.io.*;
+import java.util.Locale;
+import java.util.Scanner;
 
 public class Task04Main {
     public static void main(String[] args) throws IOException {
@@ -9,6 +11,17 @@ public class Task04Main {
         // - запустить программу
         // - проверить, что получилось 351.731900
 
-        System.out.println("0.0");
+        printSum(new Scanner(System.in));
+    }
+
+    public static void printSum(Scanner sc) {
+        double sum = 0;
+        while (sc.hasNext()) {
+            try {
+                sum += Double.parseDouble(sc.next());
+            } catch (Exception e) {
+            }
+        }
+        System.out.printf(Locale.US,"%.6f", sum);
     }
 }
