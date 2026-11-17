@@ -6,16 +6,26 @@ import java.nio.charset.Charset;
 
 public class Task03Main {
     public static void main(String[] args) throws IOException {
-        //здесь вы можете вручную протестировать ваше решение, вызывая реализуемый метод и смотря результат
+        // здесь вы можете вручную протестировать ваше решение, вызывая реализуемый
+        // метод и смотря результат
         // например вот так:
 
         /*
-        System.out.println(readAsString(new FileInputStream("task03/src/test/resources/input.test"), Charset.forName("KOI8-R")));
-        */
+         * System.out.println(readAsString(new
+         * FileInputStream("task03/src/test/resources/input.test"),
+         * Charset.forName("KOI8-R")));
+         */
     }
 
     public static String readAsString(InputStream inputStream, Charset charset) throws IOException {
-        // your implementation here
-        return "";
+        if (inputStream == null) {
+            throw new IllegalArgumentException("InputStream не может быть null");
+        }
+        if (charset == null) {
+            throw new IllegalArgumentException("Charset не может быть null");
+        }
+        byte[] bytes = inputStream.readAllBytes();
+
+        return new String(bytes, charset);
     }
 }
